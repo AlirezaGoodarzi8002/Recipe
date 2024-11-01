@@ -12,7 +12,6 @@ import com.security_wave.recipe.R
 import com.security_wave.recipe.data.model.Category
 import com.security_wave.recipe.databinding.FragmentCategoryBinding
 import com.security_wave.recipe.ui.recipes.CATEGORY_NAME_KEY
-import com.security_wave.recipe.utils.SlideDownFadeAnimator
 import com.security_wave.recipe.utils.UiState
 import com.security_wave.recipe.utils.showErrorSnackBar
 import dagger.hilt.android.AndroidEntryPoint
@@ -24,6 +23,11 @@ class CategoryFragment @Inject constructor() : Fragment() {
     private val viewModel: CategoryViewModel by viewModels()
     private var _binding: FragmentCategoryBinding? = null
     private val binding get() = _binding!!
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel.fetchCategories()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,7 +52,7 @@ class CategoryFragment @Inject constructor() : Fragment() {
             categories.observe(viewLifecycleOwner) { categoryUiState ->
                 when (categoryUiState) {
                     is UiState.Success -> {
-                        initAdapter(categoryUiState)
+                        initRecyclerView(categoryUiState)
                         hideShimmer()
                     }
 
@@ -60,7 +64,6 @@ class CategoryFragment @Inject constructor() : Fragment() {
                     is UiState.Loading -> showShimmer()
                 }
             }
-            fetchCategories()
         }
     }
 
@@ -82,7 +85,6 @@ class CategoryFragment @Inject constructor() : Fragment() {
         binding.apply {
             rcCategories.apply {
                 this.adapter = adapter
-                itemAnimator = SlideDownFadeAnimator()
             }
         }
     }

@@ -32,9 +32,8 @@ class RecipeViewModel @Inject constructor(
     private val categoryName: String? = savedStateHandle[CATEGORY_NAME_KEY]
 
     fun fetchRecipes() {
+        _recipes.value = UiState.Loading
         viewModelScope.launch {
-            _recipes.value = UiState.Loading
-
             categoryName?.let { name ->
                 _recipes.value = when (val recipes = repository.getRecipes(name)) {
                     is ResultWrapper.Success -> UiState.Success(recipes.value.recipes)
@@ -47,9 +46,7 @@ class RecipeViewModel @Inject constructor(
                     is ResultWrapper.Error.UnknownError ->
                         UiState.Error(getString(R.string.unknown_error_message))
                 }
-            } ?: run {
-                _recipes.value = UiState.Error(getString(R.string.category_id_is_missing))
-            }
+            } ?: run { _recipes.value = UiState.Error(getString(R.string.category_id_is_missing)) }
         }
     }
 

@@ -24,8 +24,8 @@ class CategoryViewModel @Inject constructor(
     val categories: LiveData<UiState<List<Category>>> get() = _categories
 
     fun fetchCategories() {
+        _categories.value = UiState.Loading
         viewModelScope.launch {
-            _categories.value = UiState.Loading
             val resultUiState = when (val categories = repository.getCategories()) {
                 is ResultWrapper.Success -> UiState.Success(categories.value.categories)
                 is ResultWrapper.Error.HttpError ->
