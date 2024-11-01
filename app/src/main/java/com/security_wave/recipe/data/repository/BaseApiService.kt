@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.annotation.StringRes
 import com.security_wave.recipe.R
 import com.security_wave.recipe.data.model.ResultWrapper
+import kotlinx.coroutines.delay
 import retrofit2.Response
 import java.io.IOException
 
@@ -13,6 +14,8 @@ abstract class BaseApiService(private val context: Context) {
         return try {
             val response = apiCall()
             if (response.isSuccessful) {
+                // delay for visiting screen
+                delay(1000L)
                 val body = response.body()
                 if (body != null) ResultWrapper.Success(body)
                 else ResultWrapper.Error.UnknownError(getString(R.string.response_is_null))
