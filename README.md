@@ -5,7 +5,7 @@ The Recipe App is an Android application built with MVVM architecture, Kotlin, a
 ## Features
 
 - **Recipe Listing and Details**: View a categorized list of recipes, including name, image, and short description.
-- **Dark Mode Support**: The app automatically switches between light and dark themes based on system settings or user preferences, providing a visually pleasing experience in any environment.
+- **Dark Mode Support**: The app switches between light and dark themes based on user interaction with toggle in first fragment, providing a visually pleasing experience in any environment.
 - **Data Loading with Shimmer Effect**: While content is being fetched, a 1-second delay has been added to enhance the loading visual experience, allowing a shimmer effect to display.
 - **Error Handling**: Comprehensive error handling for network issues, API errors, and unexpected failures, with retry options and clear, user-friendly messages.
 
