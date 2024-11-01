@@ -8,9 +8,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.security_wave.recipe.R
+import com.security_wave.recipe.data.model.Category
 import com.security_wave.recipe.databinding.FragmentCategoryBinding
 import com.security_wave.recipe.ui.recipes.CATEGORY_NAME_KEY
 import com.security_wave.recipe.utils.SlideDownFadeAnimator
+import com.security_wave.recipe.utils.UiState
 import com.security_wave.recipe.utils.showErrorSnackBar
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -36,17 +38,17 @@ class CategoryFragment @Inject constructor() : Fragment() {
         viewModel.apply {
             categories.observe(viewLifecycleOwner) { categoryUiState ->
                 when (categoryUiState) {
-                    is CategoryViewModel.CategoryUiState.Success -> {
+                    is UiState.Success -> {
                         initAdapter(categoryUiState)
                         hideShimmer()
                     }
 
-                    is CategoryViewModel.CategoryUiState.Error -> {
+                    is UiState.Error -> {
                         binding.root.showErrorSnackBar(categoryUiState.message) { fetchCategories() }
                         hideShimmer()
                     }
 
-                    is CategoryViewModel.CategoryUiState.Loading -> {
+                    is UiState.Loading -> {
                         showShimmer()
                     }
                 }
@@ -55,8 +57,8 @@ class CategoryFragment @Inject constructor() : Fragment() {
         }
     }
 
-    private fun initAdapter(categoryUiState: CategoryViewModel.CategoryUiState.Success) {
-        val adapter = CategoryAdapter(categoryUiState.categories) { categoryName ->
+    private fun initAdapter(categoryUiState: UiState.Success<List<Category>>) {
+        val adapter = CategoryAdapter(categoryUiState.data) { categoryName ->
             val bundle = Bundle().apply {
                 putString(CATEGORY_NAME_KEY, categoryName)
             }

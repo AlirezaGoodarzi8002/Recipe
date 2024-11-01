@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.security_wave.recipe.databinding.FragmentRecipeBinding
 import com.security_wave.recipe.utils.SlideDownFadeAnimator
+import com.security_wave.recipe.utils.UiState
 import com.security_wave.recipe.utils.showErrorSnackBar
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -33,8 +34,8 @@ class RecipeFragment @Inject constructor() : Fragment() {
         viewModel.apply {
             recipes.observe(viewLifecycleOwner) { recipesUiState ->
                 when (recipesUiState) {
-                    is RecipeViewModel.RecipeUiState.Success -> {
-                        val adapter = RecipeAdapter(recipesUiState.recipes) { id ->
+                    is UiState.Success -> {
+                        val adapter = RecipeAdapter(recipesUiState.data) { id ->
 //                            TODO("On recipe click listener is not yet implemented.")
                         }
                         binding.apply {
@@ -46,12 +47,12 @@ class RecipeFragment @Inject constructor() : Fragment() {
                         hideShimmer()
                     }
 
-                    is RecipeViewModel.RecipeUiState.Error -> {
+                    is UiState.Error -> {
                         binding.root.showErrorSnackBar(recipesUiState.message) { fetchRecipes() }
                         hideShimmer()
                     }
 
-                    is RecipeViewModel.RecipeUiState.Loading -> {
+                    is UiState.Loading -> {
                         showShimmer()
                     }
                 }
