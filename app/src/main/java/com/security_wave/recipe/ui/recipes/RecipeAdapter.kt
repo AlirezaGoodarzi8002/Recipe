@@ -32,6 +32,7 @@ class RecipeAdapter(
         ViewHolder(binding.root) {
         fun bind(recipe: Recipe) {
             binding.apply {
+                tvRecipeName.isSelected = true
                 this.recipe = recipe
                 root.initView(recipe)
                 executePendingBindings()
