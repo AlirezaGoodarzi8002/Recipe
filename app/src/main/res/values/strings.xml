@@ -8,4 +8,5 @@
     <string name="response_is_null">Response couldn\'t be received.</string>
     <string name="check_your_internet_connection">Please check your internet connection</string>
     <string name="unexpected_error">Unexpected error occurred</string>
+    <string name="recipe_id_is_missed">Recipe id is missed.</string>
 </resources>
