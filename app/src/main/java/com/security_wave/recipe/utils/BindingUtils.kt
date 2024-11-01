@@ -16,3 +16,12 @@ fun loadImage(view: ImageView, imageUrl: String?) {
             .into(view)
     }
 }
+
+@BindingAdapter("imageResource")
+fun loadImage(view: ImageView, @DrawableRes imageRes: Int?) {
+    imageRes?.let {
+        Glide.with(view.context)
+            .load(it)
+            .into(view)
+    }
+}

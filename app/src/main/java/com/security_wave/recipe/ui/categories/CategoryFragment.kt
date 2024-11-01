@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -34,6 +35,14 @@ class CategoryFragment @Inject constructor() : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.apply {
+            image = if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES)
+                R.drawable.ic_sun
+            else R.drawable.ic_moon
+            ivNightLight.setOnClickListener {
+                changeTheme()
+            }
+        }
 
         viewModel.apply {
             categories.observe(viewLifecycleOwner) { categoryUiState ->
@@ -48,20 +57,26 @@ class CategoryFragment @Inject constructor() : Fragment() {
                         hideShimmer()
                     }
 
-                    is UiState.Loading -> {
-                        showShimmer()
-                    }
+                    is UiState.Loading -> showShimmer()
                 }
             }
             fetchCategories()
         }
     }
 
-    private fun initAdapter(categoryUiState: UiState.Success<List<Category>>) {
+    private fun changeTheme() {
+        when (AppCompatDelegate.getDefaultNightMode()) {
+            AppCompatDelegate.MODE_NIGHT_YES -> AppCompatDelegate.setDefaultNightMode(
+                AppCompatDelegate.MODE_NIGHT_NO
+            )
+
+            else -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        }
+    }
+
+    private fun initRecyclerView(categoryUiState: UiState.Success<List<Category>>) {
         val adapter = CategoryAdapter(categoryUiState.data) { categoryName ->
-            val bundle = Bundle().apply {
-                putString(CATEGORY_NAME_KEY, categoryName)
-            }
+            val bundle = Bundle().apply { putString(CATEGORY_NAME_KEY, categoryName) }
             findNavController().navigate(R.id.action_categoryFragment_to_recipeFragment, bundle)
         }
         binding.apply {
