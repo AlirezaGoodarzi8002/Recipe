@@ -1,11 +1,15 @@
 package com.security_wave.recipe.ui.categories
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.security_wave.recipe.R
 import com.security_wave.recipe.data.model.Category
 import com.security_wave.recipe.databinding.ListItemCategoryBinding
+import com.security_wave.recipe.utils.Constants.ITEMS_ANIMATION_DURATION
 
 class CategoryAdapter(
     private val categories: List<Category>, private val onItemClicked: (String) -> Unit
@@ -29,11 +33,18 @@ class CategoryAdapter(
         fun bind(category: Category) {
             binding.apply {
                 this.category = category
+                root.initView(category)
                 executePendingBindings()
-                root.setOnClickListener {
-                    onItemClicked(category.categoryName)
-                }
             }
+        }
+
+        private fun View.initView(category: Category) {
+            setOnClickListener { onItemClicked(category.categoryName) }
+            val animation =
+                AnimationUtils.loadAnimation(context, R.anim.item_animation_fall_down).apply {
+                    duration = ITEMS_ANIMATION_DURATION
+                }
+            setAnimation(animation)
         }
     }
 }
