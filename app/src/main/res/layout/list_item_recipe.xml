@@ -6,7 +6,7 @@
 
         <variable
             name="recipe"
-            type="com.security_wave.recipe.data.model.Recipe" />
+            type="com.alireza8002.recipe.data.model.Recipe" />
     </data>
 
     <androidx.cardview.widget.CardView

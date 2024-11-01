@@ -9,11 +9,11 @@
 
         <variable
             name="viewModel"
-            type="com.security_wave.recipe.ui.detail.RecipeDetailViewModel" />
+            type="com.alireza8002.recipe.ui.detail.RecipeDetailViewModel" />
 
         <variable
             name="recipe"
-            type="com.security_wave.recipe.data.model.Meal" />
+            type="com.alireza8002.recipe.data.model.Meal" />
 
         <variable
             name="errorMessageText"

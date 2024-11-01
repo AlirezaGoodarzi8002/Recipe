@@ -5,7 +5,7 @@
 
     <fragment
         android:id="@+id/categoryFragment"
-        android:name="com.security_wave.recipe.ui.categories.CategoryFragment"
+        android:name="com.alireza8002.recipe.ui.categories.CategoryFragment"
         android:label="Categories">
         <action
             android:id="@+id/action_categoryFragment_to_recipeFragment"
@@ -18,7 +18,7 @@
 
     <fragment
         android:id="@+id/recipeFragment"
-        android:name="com.security_wave.recipe.ui.recipes.RecipeFragment"
+        android:name="com.alireza8002.recipe.ui.recipes.RecipeFragment"
         android:label="Recipes">
         <action
             android:id="@+id/action_recipeFragment_to_recipeDetailFragment"
@@ -31,6 +31,6 @@
 
     <fragment
         android:id="@+id/recipeDetailFragment"
-        android:name="com.security_wave.recipe.ui.detail.RecipeDetailFragment"
+        android:name="com.alireza8002.recipe.ui.detail.RecipeDetailFragment"
         android:label="RecipeDetail" />
 </navigation>

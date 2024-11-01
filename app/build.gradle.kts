@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace = "com.security_wave.recipe"
+    namespace = "com.alireza8002.recipe"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.security_wave.recipe"
+        applicationId = "com.alireza8002.recipe"
         minSdk = 26
         targetSdk = 34
         versionCode = 1

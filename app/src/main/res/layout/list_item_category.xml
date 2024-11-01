@@ -7,7 +7,7 @@
 
         <variable
             name="category"
-            type="com.security_wave.recipe.data.model.Category" />
+            type="com.alireza8002.recipe.data.model.Category" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
