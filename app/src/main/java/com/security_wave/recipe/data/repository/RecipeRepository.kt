@@ -11,5 +11,6 @@ class RecipeRepository @Inject constructor(
 
     suspend fun getCategories() = safeApiCall { api.getCategories() }
     suspend fun getRecipes(category: String) = safeApiCall { api.getRecipes(category) }
+    suspend fun getRecipeById(mealId: String) = safeApiCall { api.getRecipeById(mealId) }
 
 }
