@@ -9,19 +9,15 @@ data class RecipeDetail(
 
 data class Meal(
     @SerializedName("idMeal")
-    val idMeal: String,
+    val id: String,
     @SerializedName("strArea")
-    val strArea: String,
+    val area: String,
     @SerializedName("strCategory")
-    val strCategory: String,
-    @SerializedName("strDrinkAlternate")
-    val strDrinkAlternate: Any,
+    val category: String,
     @SerializedName("strInstructions")
-    val strInstructions: String,
+    val instructions: String,
     @SerializedName("strMeal")
-    val strMeal: String,
+    val meal: String,
     @SerializedName("strMealThumb")
-    val strMealThumb: String,
-    @SerializedName("strTags")
-    val strTags: String
+    val mealThumb: String
 )
