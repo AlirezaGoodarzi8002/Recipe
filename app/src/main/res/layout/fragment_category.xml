@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcCategories"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/primary"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="2" />
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmerFrameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp"
+            app:shimmer_auto_start="true"
+            app:shimmer_duration="1500">
+
+            <GridLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:columnCount="2"
+                android:padding="8dp">
+
+                <include layout="@layout/shimmer_placeholder_category" />
+
+                <include layout="@layout/shimmer_placeholder_category" />
+
+                <include layout="@layout/shimmer_placeholder_category" />
+
+                <include layout="@layout/shimmer_placeholder_category" />
+
+                <include layout="@layout/shimmer_placeholder_category" />
+
+                <include layout="@layout/shimmer_placeholder_category" />
+
+                <include layout="@layout/shimmer_placeholder_category" />
+
+                <include layout="@layout/shimmer_placeholder_category" />
+
+            </GridLayout>
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+    </RelativeLayout>
+
+</layout>
